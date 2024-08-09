@@ -73,6 +73,14 @@ def GuardaditoCompras(miData):
     with open("./compras.json","w") as outfile:
         json.dump(miData,outfile)
 
+def GuardarVentas():
+    try:
+        with open("ventas.json","r") as openfile:
+            return json.load(openfile)
+    except FileNotFoundError:
+        return []
+
+transacciones= GuardarVentas()
 
 print("----------------------")
 print("BIENVENIDO LA FARMACIA")
@@ -89,53 +97,59 @@ while booleano:
         print("---------------------------------")
         print("BIENVENIDO A LA SECCION DE VENTAS")
         print("---------------------------------")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        queFecha=input("En que fecha se realizo la venta: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        infoPaciente=input("cual es el nombre de el paciente: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        direccionPaciente=input("Cual es la direccion de el paciente: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        print("--EMPLEADOS--")
+        atendio=archivoEmpleados()
+        for i in atendio:
+            print("|NOMBRE DE EL EMPLEADO: ",i["nombre"])
+        empleado=input("Que empleado atendio al cliente: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        print("--MEDICAMENTOS--")
+        Nombremedi=archivoMedicamentos()
+        for i in Nombremedi:
+            print("Nombre: ",i["nombre"] )
+        nombreMedicamento=input("ingresa el nombre de el medicamento: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        cantidadMedicamento=input("que cantidad va a llevar: ")
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        precioMedicamento=input("cual es el costo de la compra: ")
         print("")
-        jsoonVentas=archivo()
-        for i in jsoonVentas:
-            queFecha=input("en que fecha se realizo la venta: ")
-            archivoGuardadito(queFecha)
-        jsoonVentas2=archivoPacientes()
-        for i in jsoonVentas2:
-            queNombre=input("que nombre tiene el paciente: ")
-            queDireccion=input("cual es la dirrecion de el cliente")
-            GuardaditoPacientes(queNombre,queDireccion)
-        jsoonVentas3=archivoEmpleados()
-        for i in jsoonVentas3:
-            queProovedor=input("cual es el nombre de el proovedor: ")
-            queCargo=input("que cargo tenia el proovedor: ")
-            GuardaditoEmpleados(queProovedor,queCargo)
-        jsoonVentas4=archivoMedicamentos()
-        for i in jsoonVentas4:
-            queProducto=input("cual es el nombre de el producto: ")
-            queCantidad=input("que cantidad tiene el producto: ")
-            quePrecio=input("que precio tiene la venta: ")
-            GuardaditoMedicamentos(queProducto,queCantidad,quePrecio)
-        booleano=False
+        venta={
+            "fecha": queFecha,
+            "paciente": infoPaciente,
+            "empleado": empleado,
+            "medicamento":{
+                "nombre":nombreMedicamento,
+                "cantidad":cantidadMedicamento,
+                "precio": precioMedicamento
+            }
+        }
+        transacciones.append(venta)
+        archivoGuardadito(transacciones)
+        print("------------------------------------")
+        print("------la venta se ha realizado------")
+        print("------------------------------------")
+        booleano=True
+
     if queopcion=="2":
         print("----------------------------------")
         print("BIENVENIDO A LA SECCION DE COMPRAS")
         print("----------------------------------")
         print("")
         jsoonCompras=archivoCompras()
-        for i in jsoonCompras:
-            queFecha2=input("en que fecha se realizo la venta: ")
-            archivoGuardadito(queFecha2)
-        jsoonCompras2=archivoProovedores()
-        for i in jsoonCompras2:
-            queProovedor2=input("cual es el nombre de el proovedor: ")
-            archivoGuardadito(queProovedor2)
-        for i in jsoonVentas3:
-            queProovedor2=input("cual es el nombre de el proovedor: ")
-            queCargo2=input("que cargo tenia el proovedor: ")
-            GuardaditoEmpleados(queProovedor2,queCargo2)
-        jsoonCompras4=archivoCompras()
-        for i in jsoonCompras4:
-            queNombre3=input("que nombre tiene el producto: ")
-            queCantidad3=input("que cantidad de productos llevo: ")
-            quePrecio3=input("que precio tuvo la compra: ")
-            GuardaditoCompras(queNombre3,queCantidad3,quePrecio3)
-            booleano=False
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        fechaCompra=input("En que fecha se realizo la compra: ")
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        queProovedor=input("Que proovedor atendio la compra: ")
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        contactoProovedor=("Cual es el numero de el proovedor: ")
+        print("°°°°°°°°°°°°°°°°°°°°°")
         
-
         
 
