@@ -87,7 +87,6 @@ def guardarcompras():
     except FileNotFoundError:
         return []
 
-
 transacciones= GuardarVentas()
 comprass= guardarcompras()
 
@@ -116,13 +115,15 @@ while booleano:
         print("--EMPLEADOS--")
         atendio=archivoEmpleados()
         for i in atendio:
-            print("|NOMBRE DE EL EMPLEADO: ",i["nombre"])
+            print("|NOMBRE: ",i["nombre"])
+        print("")
         empleado=input("Que empleado atendio al cliente: ")
         print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
         print("--MEDICAMENTOS--")
         Nombremedi=archivoMedicamentos()
         for i in Nombremedi:
-            print("Nombre: ",i["nombre"] )
+            print("|NOMBRE: ",i["nombre"] )
+        print("")
         nombreMedicamento=input("ingresa el nombre de el medicamento: ")
         print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
         cantidadMedicamento=input("que cantidad va a llevar: ")
@@ -144,7 +145,7 @@ while booleano:
         print("------------------------------------")
         print("------la venta se ha realizado------")
         print("------------------------------------")
-        booleano=True
+        booleano=False
 
     if queopcion=="2":
         print("----------------------------------")
@@ -156,12 +157,22 @@ while booleano:
         fechaCompra=input("En que fecha se realizo la compra: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
         jsonproovedores=archivoProovedores()
+        print("°°°°°°°°°°°°°°°°°°°°°°°°°°")
+        print("--PROVEEDORES--")
         for i in jsonproovedores:
             print("|NOMBRE: ",i["nombre"])
+            print("|CONTACTO: ",i["contacto"])
+            print("")
         queProovedor=input("Que proovedor atendio la compra: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
         contactoProovedor=("Cual es el numero de el proovedor: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
+        Nombremedi=archivoMedicamentos()
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        print("--MEDICAMENTOS--")
+        for i in Nombremedi:
+            print("|NOMBRE : ",i["nombre"])
+        print("")
         queMedicamento=input("cual es el nombre del medicamento: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
         queCantidad=input("Que cantidad del producto llevo :")
@@ -183,8 +194,9 @@ while booleano:
         print("------------------------------------")
         print("------la compra se ha realizado------")
         print("------------------------------------")
-        booleano=True
-
-        
-        
-
+        print("")
+        print("------------------------------------")
+        print("1. VOLVER AL MENU DE INICIO")
+        print("2. SALIR DEL PROGRAMA")
+        deseaSalir=input("Escoge una opcion: ")
+        booleano=False

@@ -19,7 +19,7 @@ uso: mediante las opciones que se da en los menus
 - Python
 
 ## Estructura del proyecto
-
+![alt text](estructura.png)
 ## Caracteristicas
 cuenta con 3 json:
  - json de medicamentos- cuenta con la informacion de los medicamentos y el stock
