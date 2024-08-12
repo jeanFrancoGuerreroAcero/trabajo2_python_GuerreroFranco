@@ -79,8 +79,17 @@ def GuardarVentas():
             return json.load(openfile)
     except FileNotFoundError:
         return []
+    
+def guardarcompras():
+    try:
+        with open("compras.json","r") as openfile:
+            return json.load(openfile)
+    except FileNotFoundError:
+        return []
+
 
 transacciones= GuardarVentas()
+comprass= guardarcompras()
 
 print("----------------------")
 print("BIENVENIDO LA FARMACIA")
@@ -146,10 +155,36 @@ while booleano:
         print("°°°°°°°°°°°°°°°°°°°°°")
         fechaCompra=input("En que fecha se realizo la compra: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
+        jsonproovedores=archivoProovedores()
+        for i in jsonproovedores:
+            print("|NOMBRE: ",i["nombre"])
         queProovedor=input("Que proovedor atendio la compra: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
         contactoProovedor=("Cual es el numero de el proovedor: ")
         print("°°°°°°°°°°°°°°°°°°°°°")
+        queMedicamento=input("cual es el nombre del medicamento: ")
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        queCantidad=input("Que cantidad del producto llevo :")
+        print("°°°°°°°°°°°°°°°°°°°°°")
+        quePrecio=input("De que precio fue la compra: ")
+        print("")
+        compra={
+            "fechaCompra": fechaCompra,
+            "proveedor"
+                "nombre": queProovedor,
+                "contacto": contactoProovedor,
+            "medicamentosComprados"
+                    "nombreMedicamento": queMedicamento,
+                    "cantidadComprada": queCantidad,
+                    "precioCompra": quePrecio
+        }
+        comprass.append(compra)
+        archivoGuardadito(comprass)
+        print("------------------------------------")
+        print("------la compra se ha realizado------")
+        print("------------------------------------")
+        booleano=True
+
         
         
 
